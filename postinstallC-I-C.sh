@@ -9,12 +9,12 @@ then
     BRANCH=develop
 fi
 
-if [ ! -d breakpointministries ]; then
-    (git clone https://github.com/WebJamApps/breakpointministries)
+if [ ! -d SellStuff ]; then
+    (git clone https://github.com/WebJamApps/SellStuff)
 fi
 
 (
-cd breakpointministries || exit;
+cd SellStuff || exit;
 git stash;
 git checkout $BRANCH;
 git pull;
@@ -23,11 +23,11 @@ cd ..;
 
 if [ -f .env ];
 then
-  (cp .env breakpointministries/;
+  (cp .env SellStuff/;
   )
 fi
 
 (
-cd breakpointministries;
+cd SellStuff;
 npm install;
 )

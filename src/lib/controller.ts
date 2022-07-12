@@ -15,7 +15,7 @@ interface Imodel {
   deleteMany:(...args:any)=>any;
   comparePassword?:(...args:any)=>any;
 }
-const debug = Debug('break-point-back:lib/controller');
+const debug = Debug('SellStuffApi:lib/controller');
 let uRoles:string[] = [];
 try {
   uRoles = JSON.parse(process.env.userRoles || /* istanbul ignore next */'{"roles": []}').roles;
@@ -55,8 +55,13 @@ class Controller {
   }
 
   async find(req: Request, res: Response): Promise<unknown> {
+    console.log('inside find?');
     let collection;
-    try { collection = await this.model.find(req.query); } catch (e) { 
+    try {
+      collection = await this.model.find(req.query); 
+      debug('find');
+      debug(collection);
+    } catch (e) { 
       return res.status(500).json({ message: (e as Error).message }); 
     }
     return res.status(200).json(collection);

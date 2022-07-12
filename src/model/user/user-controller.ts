@@ -4,7 +4,7 @@ import Controller from '../../lib/controller';
 import userModel from './user-facade';
 import authGoogle from '../../auth/google';
 
-const debug = Debug('break-point-back:user-controller');
+const debug = Debug('SellStuffApi:user-controller');
 
 class UserController extends Controller {
   authGoogle: typeof authGoogle;

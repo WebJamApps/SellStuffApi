@@ -1,7 +1,7 @@
 import superagent from 'superagent';
 import Debug from 'debug';
 
-const debug = Debug('break-point-back:auth/google');
+const debug = Debug('SellStuffApi:auth/google');
 
 const accessTokenUrl = 'https://accounts.google.com/o/oauth2/token';
 const peopleApiUrl = 'https://people.googleapis.com/v1/people/me?personFields=names%2CemailAddresses';

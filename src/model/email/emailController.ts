@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express';
 import Debug from 'debug';
 
-const debug = Debug('break-point-back:EmailController');
+const debug = Debug('SellStuffApi:EmailController');
 
 class EmailController {
   // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-useless-constructor

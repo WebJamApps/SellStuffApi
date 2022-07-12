@@ -6,14 +6,13 @@ import express from 'express';
 import type { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import helmet from 'helmet';
-import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import cors from 'cors';
 import enforce from 'express-sslify';
 import routes from './routes';
 
 dotenv.config();
-const debug = Debug('break-point-back:index');
+const debug = Debug('SellStuffApi:index');
 /* istanbul ignore else */
 if (supportsColor.stdout) debug('Terminal stdout supports color');
 
@@ -26,7 +25,7 @@ const app = express();
 
 /* istanbul ignore next */
 if (process.env.NODE_ENV === 'production' && process.env.BUILD_BRANCH === 'main') app.use(enforce.HTTPS({ trustProtoHeader: true }));
-app.use(express.static(path.normalize(path.join(__dirname, '../breakpointministries/dist'))));
+app.use(express.static(path.normalize(path.join(__dirname, '../SellStuff/dist'))));
 app.use(cors(corsOptions));
 let mongoDbUri: string = process.env.MONGO_DB_URI || /* istanbul ignore next */'';
 /* istanbul ignore else */
@@ -53,12 +52,12 @@ app.use(helmet.contentSecurityPolicy({
     'connect-src': ["'self'", 'ws:', 'wss:'],
   },
 }));
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(morgan('tiny'));
 routes(app, '/api');
 app.get('*', (req, res) => {
-  res.sendFile(path.normalize(path.join(__dirname, '../breakpointministries/dist/index.html')));
+  res.sendFile(path.normalize(path.join(__dirname, '../SellStuff/dist/index.html')));
 });
 app.use((_req, res) => res.status(404).send('not found'));
 /* istanbul ignore next */

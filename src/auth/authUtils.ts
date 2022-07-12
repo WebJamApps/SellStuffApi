@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 import userModel from '../model/user/user-schema';
 
 dotenv.config();
-const debug = Debug('break-point-back:authUtils');
+const debug = Debug('SellStuffApi:authUtils');
 
 const findUserById = async (req: { user: any; userType: string; baseUrl:string },
   res: { status: (arg0: number) => { (): any; new(): any; json: { (arg0: { message: string; }): any; new(): any; }; }; },
