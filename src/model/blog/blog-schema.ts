@@ -6,7 +6,7 @@ const options = {
 
 const { Schema } = mongoose;
 
-const blogSchema = new Schema({
+const blogSchema:any = new Schema({
   title: { type: String, required: true },
   type: { type: String, required: false },
   author: { type: String, required: false },

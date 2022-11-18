@@ -31,6 +31,7 @@ let mongoDbUri: string = process.env.MONGO_DB_URI || /* istanbul ignore next */'
 /* istanbul ignore else */
 if (process.env.NODE_ENV === 'test') mongoDbUri = process.env.TEST_DB || /* istanbul ignore next */'';
 mongoose.connect(mongoDbUri, {});
+mongoose.set('useFindAndModify', false);
 app.use(helmet());
 app.use(helmet.contentSecurityPolicy({
   directives: {

@@ -4,8 +4,8 @@
   "description": "changeInChrist-API",
   "main": "index.js",
   "engines": {
-    "node": ">=18.0.0 <19",
-    "npm": ">=8.7.0 <9"
+    "node": ">=18.12.1 <19",
+    "npm": ">=8.19.2 <9"
   },
   "files": [
     "lib/",
@@ -59,8 +59,9 @@
     "helmet": "latest",
     "jwt-simple": "latest",
     "moment": "^2.29.3",
-    "mongoose": "latest",
+    "mongoose": "^5.13.15",
     "morgan": "latest",
+    "react-google-login": "^5.2.2",
     "superagent": "latest",
     "supports-color": "^7.1.0",
     "typescript": "latest"

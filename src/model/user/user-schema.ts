@@ -1,10 +1,13 @@
+/* eslint-disable @typescript-eslint/no-this-alias */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import mongoose from 'mongoose';
 // import userUtils from './userUtils';
 import bcrypt from 'bcryptjs';
 
 const { Schema } = mongoose;
 
-const userSchema = new Schema({
+const userSchema:any = new Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: false },
@@ -30,8 +33,8 @@ const userSchema = new Schema({
   volWorkOther: { type: String, required: false },
 });
 
-userSchema.pre('save', function pwEcrypt(next) {
-  // eslint-disable-next-line @typescript-eslint/no-this-alias, @typescript-eslint/no-explicit-any
+userSchema.pre('save', function pwEcrypt(this: any, next:any) {
+  //@ts-ignore
   const user:any = this;
   if (!this.isModified('password') || user.password === '') { return next(); }
   return bcrypt.genSalt(10, (err, salt) => {

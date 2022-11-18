@@ -6,7 +6,7 @@ const options = {
 
 const { Schema } = mongoose;
 
-const subscriberSchema = new Schema({
+const subscriberSchema:any = new Schema({
   name: { type: String, required: false },
   email: { type: String, required: true, unique: true },
   street: { type: String, required: false },

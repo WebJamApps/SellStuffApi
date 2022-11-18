@@ -71,7 +71,9 @@ class UserController extends Controller {
     update.password = '';
     update.name = profile.names[0].displayName; // force the name of the user to be the name from google account
     update.verifiedEmail = true;
-    try { existingUser = await this.model.findOneAndUpdate({ email: profile.emailAddresses[0].value }, update); } catch (e) {
+    try { existingUser = await this.model.findOneAndUpdate({ email: profile.emailAddresses[0].value }, update); }
+    catch (e) {
+      debug(e);
       return this.resErr(res, e as Error);
     }
     if (existingUser) return res.status(200).json({ email: existingUser.email, token: this.authUtils.createJWT(existingUser) });

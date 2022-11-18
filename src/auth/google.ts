@@ -30,6 +30,7 @@ async function authenticate(req: { body: { redirectUri: string; code: string; cl
   try { // Step 2. Retrieve profile information about the current user.
     profile = await superagent.get(peopleApiUrl).set({ Authorization: `Bearer ${token.body.access_token}`, Accept: 'application/json' });
   } catch (e) {
+    console.log('Line 33');
     debug((e as Error).message);
     return Promise.reject(e);
   }
