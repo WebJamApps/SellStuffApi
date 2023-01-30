@@ -1,7 +1,6 @@
 import path from 'path';
 import dotenv from 'dotenv';
 import Debug from 'debug';
-import supportsColor from 'supports-color';
 import express from 'express';
 import type { Request, Response } from 'express';
 import mongoose from 'mongoose';
@@ -13,8 +12,6 @@ import routes from './routes';
 
 dotenv.config();
 const debug = Debug('SellStuffApi:index');
-/* istanbul ignore else */
-if (supportsColor.stdout) debug('Terminal stdout supports color');
 
 const corsOptions = {
   origin: JSON.parse(process.env.AllowUrl || /* istanbul ignore next */'{}').urls,
