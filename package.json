@@ -20,7 +20,7 @@
     "start:debug": "rm -rf build && tsc && npm-run-all -p ts-start ts-watch",
     "ts-watch": "tsc -w",
     "cc": "codeclimate analyze -f html > codeclimate.html",
-    "ts-start": "DEBUG=SellStuffApi:* nodemon build/index.js",
+    "ts-start": "DEBUG=SellStuffApi:* nodemon --trace-deprecation build/index.js",
     "build:front": "./postinstallC-I-C.sh && rm -rf ./SellStuff/src && rm -rf ./SellStuff/test",
     "postinstall": "npm run rmrf && tsc && npm run build:front",
     "rebuild:front": "./postinstallC-I-C.sh && npm run build:prod",
