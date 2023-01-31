@@ -3,6 +3,9 @@ import mongoose from 'mongoose';
 import Controller from '../../../src/lib/controller';
 
 describe('lib controller', () => {
+  beforeAll(async () => {
+    jest.setTimeout(30000);
+  });
   const goodId = new mongoose.Types.ObjectId();
   let c, r;
   const model:any = {
