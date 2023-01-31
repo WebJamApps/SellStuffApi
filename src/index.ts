@@ -31,7 +31,7 @@ if (process.env.NODE_ENV === 'test') mongoDbUri = process.env.TEST_DB || /* ista
   try {
     mongoose.set('strictQuery', false);
     await mongoose.connect(mongoDbUri, {});
-  } catch (err) { debug((err as Error).message); }
+  } catch (err) { debug((err as Error).message); throw new Error(err);}
 }
 )();
 app.use(helmet());
