@@ -9,21 +9,9 @@ import morgan from 'morgan';
 import cors from 'cors';
 import enforce from 'express-sslify';
 import routes from './routes';
-
 dotenv.config();
 const debug = Debug('SellStuffApi:index');
 
-const corsOptions = {
-  origin: JSON.parse(process.env.AllowUrl || /* istanbul ignore next */'{}').urls,
-  credentials: true,
-  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-};
-const app = express();
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV === 'production' && process.env.BUILD_BRANCH === 'main') app.use(enforce.HTTPS({ trustProtoHeader: true }));
-app.use(express.static(path.normalize(path.join(__dirname, '../SellStuff/dist'))));
-app.use(cors(corsOptions));
 let mongoDbUri: string = process.env.MONGO_DB_URI || /* istanbul ignore next */'';
 /* istanbul ignore else */
 if (process.env.NODE_ENV === 'test') mongoDbUri = process.env.TEST_DB || /* istanbul ignore next */'';
@@ -31,9 +19,20 @@ if (process.env.NODE_ENV === 'test') mongoDbUri = process.env.TEST_DB || /* ista
   try {
     mongoose.set('strictQuery', false);
     await mongoose.connect(mongoDbUri, {});
-  } catch (err) { debug((err as Error).message); throw new Error(err);}
+  } catch (err) { debug((err as Error).message); throw err;}
 }
 )();
+
+const app = express();
+/* istanbul ignore next */
+if (process.env.NODE_ENV === 'production' && process.env.BUILD_BRANCH === 'main') app.use(enforce.HTTPS({ trustProtoHeader: true }));
+app.use(express.static(path.normalize(path.join(__dirname, '../SellStuff/dist'))));
+const corsOptions = {
+  origin: JSON.parse(process.env.AllowUrl || /* istanbul ignore next */'{}').urls,
+  credentials: true,
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+app.use(cors(corsOptions));
 app.use(helmet());
 app.use(helmet.contentSecurityPolicy({
   directives: {
