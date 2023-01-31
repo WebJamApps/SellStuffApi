@@ -63,7 +63,7 @@
     "morgan": "latest",
     "superagent": "latest",
     "supports-color": "^7.1.0",
-    "typescript": "latest"
+    "typescript": "4.9.4"
   },
   "devDependencies": {
     "@types/jest": "latest",
