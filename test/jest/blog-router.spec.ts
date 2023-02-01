@@ -9,6 +9,7 @@ describe('The Blog API', () => {
   let r, newUser:any;
   const allowedUrl = JSON.parse(process.env.AllowUrl || '{}').urls[0];
   beforeAll(async () => {
+    jest.setTimeout(30000);
     const query:any = {};
     await userModel.deleteMany(query);
     newUser = await userModel.create({ name: 'foo', email: 'foo3@example.com', userType: JSON.parse(process.env.AUTH_ROLES || '{}').user[0] });

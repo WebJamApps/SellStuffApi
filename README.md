@@ -8,4 +8,4 @@
 
 ## Unit Tests
 
-If the api unit tests should fail, it could be because the test database going into hibernation mode. Go here and click `Resume` to restart the test database <https://cloud.mongodb.com/v2/5ff397e5345cde0cf73d4368#clusters>
+If the api unit tests should fail, it could be because the test database going into hibernation mode. Go here and click `Resume` to restart the test database <https://cloud.mongodb.com/v2/5f6277896c094f7be3337465#/clusters>
